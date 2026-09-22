@@ -1,0 +1,4 @@
+# LF in the repo and in the working tree, on every platform
+* text=auto eol=lf
+*.py text eol=lf
+*.md text eol=lf

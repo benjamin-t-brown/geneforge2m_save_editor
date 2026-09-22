@@ -22,18 +22,34 @@ Each slot holds four files; all character data is in `data`.
 ## Usage
 
 ```
-python gfedit.py show 1                     # dump current values
-python gfedit.py heal 1                     # fill all pools to max
-python gfedit.py set 1 Stealth=8 Melee=10   # patch by name
-python gfedit.py restore 1                  # undo the last write
+python gfedit.py list                             # show every slot on disk
+python gfedit.py show    --slot 1                 # dump current values
+python gfedit.py heal    --slot 1                 # fill all pools to max
+python gfedit.py set     --slot 1 Stealth=8       # patch by name
+python gfedit.py restore --slot 1                 # undo the last write
 ```
 
-The trailing number is the **directory** number, not the in-game slot label.
+The slot is **required** -- there is no default. Give it either way:
+
+| flag | meaning |
+|------|---------|
+| `--slot N` | the save **directory** number, i.e. `SaveN/` |
+| `--ingame-slot N` | the slot number shown in the game menu (`= --slot N-1`) |
+
+So the game's "slot 2" is `--slot 1` or `--ingame-slot 2`. When in doubt,
+`gfedit.py list` prints both numbers alongside each save's label and zone:
+
+```
+saves in .../Documents/Spiderweb Software/Geneforge 2 Infestation Saved Games
+  --slot 0   (game slot 1  )  asdf                     Patrolled Path
+  --slot 1   (game slot 2  )  asdf2                    Power Station
+  --slot 18  (game slot 19 )  Quicksave (F4 to load)   Power Station
+```
 
 Set `GF2_SAVES` to point at a non-default save folder:
 
 ```
-GF2_SAVES="/path/to/Geneforge 2 Infestation Saved Games" python gfedit.py show 1
+GF2_SAVES="/path/to/Geneforge 2 Infestation Saved Games" python gfedit.py list
 ```
 
 ## Editable fields
