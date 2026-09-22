@@ -1,0 +1,6 @@
+# never commit save data
+*.bak
+Geneforge 2 Infestation Saved Games/
+Save*/
+__pycache__/
+*.pyc
